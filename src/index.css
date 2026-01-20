@@ -1,0 +1,375 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================================
+   Healthcare Premium Design System
+   - Soft colors for medical environments
+   - Smooth, gentle animations
+   - Accessible and calming aesthetics
+   =========================================== */
+
+:root {
+  /* Soft Healthcare Color Palette */
+  --primary-soft: #319795;       /* Soft teal - calming healthcare */
+  --primary-lighter: #4FD1C5;    /* Lighter teal */
+  --primary-muted: #81E6D9;      /* Very soft teal */
+  
+  --accent-coral: #E8927C;       /* Soft coral - CTAs */
+  --accent-coral-light: #F5B39F; /* Lighter coral */
+  
+  --success-soft: #68D391;       /* Soft green */
+  --warning-soft: #F6AD55;       /* Soft orange */
+  --info-soft: #63B3ED;          /* Soft blue */
+  
+  /* Soft neutral backgrounds */
+  --bg-cream: #FDFCFB;
+  --bg-soft-gray: #F7F8FA;
+  --bg-soft-green: #F0FFF4;
+  --bg-soft-blue: #EBF8FF;
+  --bg-soft-pink: #FFF5F5;
+  
+  /* Text colors */
+  --text-primary: #2D3748;
+  --text-secondary: #718096;
+  --text-muted: #A0AEC0;
+  
+  /* Smooth transition timing */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-gentle: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-soft-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ===========================================
+   Smooth Base Transitions
+   =========================================== */
+
+*,
+*::before,
+*::after {
+  transition-timing-function: var(--ease-smooth);
+}
+
+/* ===========================================
+   Soft Healthcare Card Styles
+   =========================================== */
+
+.healthcare-card {
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.02),
+    0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s var(--ease-gentle);
+}
+
+.healthcare-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 4px 12px rgba(49, 151, 149, 0.08),
+    0 12px 32px rgba(0, 0, 0, 0.06);
+  border-color: rgba(49, 151, 149, 0.15);
+}
+
+/* ===========================================
+   Smooth Hover States
+   =========================================== */
+
+.soft-hover {
+  transition: all 0.35s var(--ease-gentle);
+}
+
+.soft-hover:hover {
+  transform: translateY(-3px) scale(1.01);
+}
+
+/* Icon gentle pulse on hover */
+.icon-gentle-scale {
+  transition: transform 0.4s var(--ease-soft-bounce);
+}
+
+.group:hover .icon-gentle-scale {
+  transform: scale(1.08);
+}
+
+/* ===========================================
+   Soft Gradient Backgrounds
+   =========================================== */
+
+.gradient-soft-green {
+  background: linear-gradient(145deg, #E6FFFA 0%, #F0FFF4 100%);
+}
+
+.gradient-soft-blue {
+  background: linear-gradient(145deg, #EBF8FF 0%, #E6FFFA 100%);
+}
+
+.gradient-soft-purple {
+  background: linear-gradient(145deg, #FAF5FF 0%, #FED7E2 100%);
+}
+
+.gradient-soft-coral {
+  background: linear-gradient(145deg, #FFFAF0 0%, #FED7D7 100%);
+}
+
+/* ===========================================
+   Smooth Button Styles
+   =========================================== */
+
+.btn-healthcare-primary {
+  background: linear-gradient(135deg, #319795 0%, #2C7A7B 100%);
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.35s var(--ease-gentle);
+  box-shadow: 0 4px 14px rgba(49, 151, 149, 0.25);
+}
+
+.btn-healthcare-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(49, 151, 149, 0.35);
+}
+
+.btn-healthcare-secondary {
+  background: white;
+  color: var(--primary-soft);
+  padding: 0.875rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  border: 2px solid rgba(49, 151, 149, 0.2);
+  transition: all 0.35s var(--ease-gentle);
+}
+
+.btn-healthcare-secondary:hover {
+  border-color: var(--primary-soft);
+  background: rgba(49, 151, 149, 0.05);
+  transform: translateY(-2px);
+}
+
+.btn-cta-coral {
+  background: linear-gradient(135deg, #E8927C 0%, #DD6B55 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  transition: all 0.35s var(--ease-gentle);
+  box-shadow: 0 4px 16px rgba(232, 146, 124, 0.3);
+}
+
+.btn-cta-coral:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232, 146, 124, 0.4);
+}
+
+/* ===========================================
+   Smooth Keyframe Animations
+   - No harsh or jarring effects
+   =========================================== */
+
+@keyframes gentle-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes soft-breathing {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+
+/* Animation Utility Classes */
+.animate-gentle-fade {
+  animation: gentle-fade-in 0.6s var(--ease-gentle) forwards;
+}
+
+.animate-soft-pulse {
+  animation: soft-pulse 3s var(--ease-gentle) infinite;
+}
+
+.animate-gentle-float {
+  animation: gentle-float 4s var(--ease-gentle) infinite;
+}
+
+.animate-soft-breathing {
+  animation: soft-breathing 4s var(--ease-gentle) infinite;
+}
+
+/* Staggered animations for lists */
+.stagger-item:nth-child(1) { animation-delay: 0.05s; }
+.stagger-item:nth-child(2) { animation-delay: 0.1s; }
+.stagger-item:nth-child(3) { animation-delay: 0.15s; }
+.stagger-item:nth-child(4) { animation-delay: 0.2s; }
+.stagger-item:nth-child(5) { animation-delay: 0.25s; }
+.stagger-item:nth-child(6) { animation-delay: 0.3s; }
+.stagger-item:nth-child(7) { animation-delay: 0.35s; }
+.stagger-item:nth-child(8) { animation-delay: 0.4s; }
+
+/* ===========================================
+   Soft Focus States for Accessibility
+   =========================================== */
+
+input:focus,
+button:focus,
+a:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(49, 151, 149, 0.2);
+}
+
+/* ===========================================
+   Soft Icon Badge Styles
+   =========================================== */
+
+.icon-badge {
+  border-radius: 1rem;
+  padding: 0.875rem;
+  transition: all 0.35s var(--ease-gentle);
+}
+
+.icon-badge-green {
+  background: linear-gradient(135deg, #38A169 0%, #2F855A 100%);
+  box-shadow: 0 4px 12px rgba(56, 161, 105, 0.25);
+}
+
+.icon-badge-blue {
+  background: linear-gradient(135deg, #3182CE 0%, #2B6CB0 100%);
+  box-shadow: 0 4px 12px rgba(49, 130, 206, 0.25);
+}
+
+.icon-badge-purple {
+  background: linear-gradient(135deg, #805AD5 0%, #6B46C1 100%);
+  box-shadow: 0 4px 12px rgba(128, 90, 213, 0.25);
+}
+
+.icon-badge-coral {
+  background: linear-gradient(135deg, #E8927C 0%, #DD6B55 100%);
+  box-shadow: 0 4px 12px rgba(232, 146, 124, 0.25);
+}
+
+.group:hover .icon-badge {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ===========================================
+   Soft Border Styles
+   =========================================== */
+
+.border-soft {
+  border: 1.5px solid rgba(0, 0, 0, 0.05);
+  transition: border-color 0.35s var(--ease-gentle);
+}
+
+.border-soft-green {
+  border: 1.5px solid rgba(56, 161, 105, 0.15);
+}
+
+.border-soft-green:hover {
+  border-color: rgba(56, 161, 105, 0.35);
+}
+
+.border-soft-blue {
+  border: 1.5px solid rgba(49, 130, 206, 0.15);
+}
+
+.border-soft-blue:hover {
+  border-color: rgba(49, 130, 206, 0.35);
+}
+
+.border-soft-purple {
+  border: 1.5px solid rgba(128, 90, 213, 0.15);
+}
+
+.border-soft-purple:hover {
+  border-color: rgba(128, 90, 213, 0.35);
+}
+
+.border-soft-coral {
+  border: 1.5px solid rgba(232, 146, 124, 0.15);
+}
+
+.border-soft-coral:hover {
+  border-color: rgba(232, 146, 124, 0.35);
+}
+
+/* ===========================================
+   Typography Enhancements
+   =========================================== */
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===========================================
+   Soft Shadow Utilities
+   =========================================== */
+
+.shadow-soft-sm {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-soft-md {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.shadow-soft-lg {
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.shadow-soft-xl {
+  box-shadow: 
+    0 12px 36px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Teal accent shadows */
+.shadow-teal {
+  box-shadow: 0 8px 24px rgba(49, 151, 149, 0.15);
+}
+
+.shadow-teal:hover {
+  box-shadow: 0 12px 32px rgba(49, 151, 149, 0.2);
+}
