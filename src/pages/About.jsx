@@ -1,149 +1,18 @@
+
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Target, Eye, Heart, ShieldCheck, Users, Lightbulb, TrendingUp } from 'lucide-react';
+import { Target, Heart, ShieldCheck, Users, Clock, MapPin, Phone, Star } from 'lucide-react';
+import drDesk from '../assets/dr-image.avif'; 
+import drPortrait from '../assets/drPortrait.png';
+import drSitting from '../assets/drSitting.png';
+import hospitalSetting from '../assets/hospitalSetting.png';
 
-export default function About() {
+const medicalGreen = "#008542";
+
+function StatCard({ icon, title, label }) {
     return (
-        <div className="flex flex-col min-h-screen font-sans bg-white">
-            <Header />
-            <main className="flex-grow">
-                {/* Hero Section */}
-                <section className="relative h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 z-0 bg-[#E8F3F0]">
-                        {/* Decorative Diamond Grid Pattern */}
-                        <div className="absolute inset-0 opacity-[0.15]"
-                            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6zM36 4V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}>
-                        </div>
-                    </div>
-
-                    <div className="container mx-auto px-4 lg:px-10 relative z-10">
-                        <div className="bg-white/90 backdrop-blur-md p-8 md:p-12 rounded-2xl shadow-xl border border-white/50 max-w-2xl text-center md:text-left">
-                            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
-                                Vartika Aarna Healthcare
-                            </h1>
-                            <p className="text-xl md:text-2xl font-bold text-green-700 mb-6">
-                                Leading Integrated Healthcare Services Provider in India
-                            </p>
-                            <p className="text-gray-600 leading-relaxed font-medium">
-                                We are committed to clinical excellence and distinctive patient care across our network of world-class hospitals.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Stats Grid */}
-                <section className="container mx-auto px-4 lg:px-10 -mt-12 relative z-20">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        <StatCard
-                            bg="bg-[#F0F4FF]"
-                            icon={<ShieldCheck className="text-blue-600" />}
-                            title="4 JCI & 26 NABH"
-                            label="Accredited Hospitals"
-                        />
-                        <StatCard
-                            bg="bg-[#FFF8F0]"
-                            icon={<TrendingUp className="text-orange-600" />}
-                            title="33"
-                            label="Healthcare Facilities"
-                        />
-                        <StatCard
-                            bg="bg-[#F0FFF4]"
-                            icon={<Users className="text-green-600" />}
-                            title="5,700+"
-                            label="Operational Beds"
-                        />
-                        <StatCard
-                            bg="bg-[#FEF2F2]"
-                            icon={<Users className="text-red-600" />}
-                            title="12,500+"
-                            label="Healthcare Professionals"
-                        />
-                    </div>
-                </section>
-
-                {/* Vision & Mission */}
-                <section className="py-24 bg-white">
-                    <div className="container mx-auto px-4 lg:px-10">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                            <VisionMissionCard
-                                icon={<Eye size={40} className="text-blue-600" />}
-                                title="Our Vision"
-                                desc="To be a global leader in healthcare through quality and clinical excellence."
-                            />
-                            <VisionMissionCard
-                                icon={<Target size={40} className="text-green-600" />}
-                                title="Our Mission"
-                                desc="To be the most preferred healthcare provider through clinical excellence and distinctive patient care."
-                            />
-                        </div>
-                    </div>
-                </section>
-
-                {/* Core Values */}
-                <section className="py-24 bg-[#F8F9FA] border-y border-gray-100">
-                    <div className="container mx-auto px-4 lg:px-10">
-                        <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-16 px-4">Our Values</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                            <ValueCard
-                                title="Patient Centricity"
-                                desc="Commit to 'best outcomes and experience' for our patients."
-                                icon={<Heart />}
-                            />
-                            <ValueCard
-                                title="Integrity"
-                                desc="Be principled, open and honest in all our dealings."
-                                icon={<ShieldCheck />}
-                            />
-                            <ValueCard
-                                title="Teamwork"
-                                desc="Proactively support each other and operate as one team."
-                                icon={<Users />}
-                            />
-                            <ValueCard
-                                title="Ownership"
-                                desc="Be responsible and take pride in our actions."
-                                icon={<Target />}
-                            />
-                            <ValueCard
-                                title="Innovation"
-                                desc="Continuously improve and innovate to exceed expectations."
-                                icon={<Lightbulb />}
-                            />
-                        </div>
-                    </div>
-                </section>
-
-                {/* Leadership Section */}
-                <section className="py-24 bg-white">
-                    <div className="container mx-auto px-4 lg:px-10">
-                        <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-16 text-center">Our Leadership</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-                            {[1, 2, 3, 4].map(id => (
-                                <div key={id} className="text-center group">
-                                    <div className="w-32 h-32 md:w-48 md:h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-gray-50 group-hover:border-green-100 transition-colors bg-gray-100">
-                                        <img
-                                            src={`https://i.pravatar.cc/300?img=${id + 10}`}
-                                            alt="Leader"
-                                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"
-                                        />
-                                    </div>
-                                    <h3 className="font-black text-lg text-gray-900">Dr. Vivek Sharma</h3>
-                                    <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mt-1">Chairman</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            </main>
-            <Footer />
-        </div>
-    );
-}
-
-function StatCard({ bg, icon, title, label }) {
-    return (
-        <div className={`${bg} p-8 rounded-2xl shadow-sm border border-black/5 flex flex-col items-center text-center group hover:-translate-y-1 transition-transform`}>
-            <div className="mb-4 transform group-hover:scale-110 transition-transform">
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center group hover:-translate-y-2 transition-all duration-300">
+            <div className="mb-4 transform group-hover:scale-110 transition-transform" style={{ color: medicalGreen }}>
                 {icon}
             </div>
             <h4 className="text-2xl font-black text-gray-900 mb-1">{title}</h4>
@@ -152,24 +21,147 @@ function StatCard({ bg, icon, title, label }) {
     );
 }
 
-function VisionMissionCard({ icon, title, desc }) {
+function TreatmentCard({ title }) {
     return (
-        <div className="bg-gray-50 p-10 rounded-3xl border border-gray-100 flex flex-col items-center text-center hover:bg-white hover:shadow-xl transition-all">
-            <div className="mb-6">{icon}</div>
-            <h3 className="text-2xl font-black text-gray-900 mb-4">{title}</h3>
-            <p className="text-gray-600 leading-relaxed font-medium text-lg max-w-md">{desc}</p>
+        <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex items-center gap-3 group">
+            <div className="w-2 h-2 rounded-full group-hover:scale-125 transition-transform" style={{ backgroundColor: medicalGreen }}></div>
+            <p className="text-sm font-bold text-gray-700">{title}</p>
         </div>
     );
 }
 
-function ValueCard({ title, desc, icon }) {
+export default function About() {
+    const treatments = [
+        "Myocardial Infarction (Heart Attack)", "Neurological Dysfunction", 
+        "Severe Back Pain", "Lower Back Pain (Lumbago)", 
+        "Head and Neck Pain", "Shoulder Pain", "Foot Pain", 
+        "Eye Pain", "Ear Pain", "Ulcer", "Type 1 (Juvenile) Diabetes"
+    ];
+
     return (
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-            <div className="text-green-600 mb-6 w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center">
-                {icon}
-            </div>
-            <h4 className="font-black text-gray-900 mb-3">{title}</h4>
-            <p className="text-sm text-gray-500 leading-relaxed font-medium">{desc}</p>
+        <div className="flex flex-col min-h-screen font-sans bg-white">
+            <Header />
+            <main className="grow">
+                {/* --- Hero Section --- */}
+                <section className="relative py-20 md:py-32 flex items-center justify-center overflow-hidden bg-slate-50">
+                    <div className="container mx-auto px-4 lg:px-10 relative z-10">
+                        <div className="grid lg:grid-cols-2 gap-12 items-center">
+                            <div className="text-center lg:text-left">
+                                <span style={{ color: medicalGreen }} className="text-sm font-black uppercase tracking-[0.3em] mb-4 block">
+                                    Established 2018
+                                </span>
+                                <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
+                                    Vartika Aarna <br/> 
+                                    <span style={{ color: medicalGreen }}>Heart Care</span>
+                                </h1>
+                                <p className="text-gray-600 leading-relaxed font-medium text-lg max-w-xl mb-8">
+                                    A dedicated multispeciality hospital in Taramandal, Gorakhpur, offering high-quality healthcare services for patients of all ages. We prioritize patient comfort in a relaxing and welcoming environment.
+                                </p>
+                                <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+                                    <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                                        <Star size={18} fill="#EAB308" className="text-yellow-500" />
+                                        <span className="font-bold text-gray-800">4.8 Rating</span>
+                                        <span className="text-gray-400 text-sm">(48 Reviews)</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                                        <Clock size={18} style={{ color: medicalGreen }} />
+                                        <span className="font-bold text-gray-800">Open 24 Hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {/* Circular Image with Hover Effect */}
+                            <div className="flex justify-center relative">
+                                <div className="relative group">
+                                    <div className="absolute -inset-4 rounded-full opacity-20 group-hover:opacity-30 blur-xl transition-opacity duration-500" style={{ backgroundColor: medicalGreen }}></div>
+                                    <div className="w-64 h-64 md:w-96 md:h-96 rounded-full overflow-hidden border-[12px] border-white shadow-2xl relative z-10 transition-transform duration-500 group-hover:scale-105">
+                                        <img 
+                                            src={drPortrait} 
+                                            alt="Dr. Portrait" 
+                                            className="w-full h-full object-cover object-top"
+                                        />
+                                    </div>
+                                    <div style={{ backgroundColor: medicalGreen }} className="absolute bottom-4 right-4 z-20 p-4 rounded-full text-white shadow-lg transform group-hover:rotate-12 transition-transform">
+                                        <Heart size={32} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* --- Stats Section --- */}
+                <section className="container mx-auto px-4 lg:px-10 -mt-12 relative z-20">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <StatCard icon={<ShieldCheck size={32} />} title="8 Years" label="In Healthcare" />
+                        <StatCard icon={<Users size={32} />} title="48+" label="Positive Ratings" />
+                        <StatCard icon={<Target size={32} />} title="24/7" label="Emergency Support" />
+                        <StatCard icon={<Heart size={32} />} title="Excellent" label="Treatment" />
+                    </div>
+                </section>
+
+                {/* --- Specialized Treatments Section --- */}
+                <section className="py-24 bg-white">
+                    <div className="container mx-auto px-4 lg:px-10">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">Specialized Treatments</h2>
+                            <p className="text-gray-500 font-bold uppercase tracking-widest text-sm">Comprehensive Medical Excellence</p>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {treatments.map((t, i) => <TreatmentCard key={i} title={t} />)}
+                        </div>
+                    </div>
+                </section>
+
+                {/* --- Commitment & History --- */}
+                <section className="py-24 bg-slate-50 border-y border-gray-100">
+                    <div className="container mx-auto px-4 lg:px-10">
+                        <div className="grid lg:grid-cols-2 gap-16 items-center">
+                            <div className="order-2 lg:order-1 grid grid-cols-2 gap-4">
+                                <img src={hospitalSetting} alt="Hospital" className="rounded-2xl shadow-lg w-full h-64 object-cover" />
+                                <img src={drSitting} alt="Consultation" className="rounded-2xl shadow-lg w-full h-64 object-cover mt-8" />
+                            </div>
+                            <div className="order-1 lg:order-2">
+                                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-8">History & Commitment</h2>
+                                <div className="space-y-6 text-gray-600 font-medium text-lg leading-relaxed">
+                                    <p>
+                                        Vartika Aarna Heart Care and Multispeciality Hospital has been a pillar in the healthcare sector for many years. Established in 2018, the hospital caters to a wide range of medical needs.
+                                    </p>
+                                    <p>
+                                        Located conveniently in Taramandal, Gorakhpur, we ensure easy access for patients from neighboring cities and towns, saving them valuable time and effort.
+                                    </p>
+                                    <div className="flex items-center gap-4 pt-4">
+                                        <div className="w-12 h-12 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: medicalGreen }}>
+                                            <ShieldCheck />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-black text-gray-900">Highly Skilled Team</h4>
+                                            <p className="text-sm">Professionals well-versed in their respective domains.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* --- Circular Leadership Section --- */}
+                <section className="py-24 bg-white">
+                    <div className="container mx-auto px-4 lg:px-10 text-center">
+                        <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-16">Our Leadership</h2>
+                        <div className="flex flex-wrap justify-center gap-12">
+                            <div className="group">
+                                <div className="w-48 h-48 md:w-64 md:h-64 mx-auto mb-6 rounded-full overflow-hidden border-8 border-gray-50 group-hover:border-green-100 transition-all duration-500 shadow-xl relative">
+                                    <img src={drDesk} alt="Lead Doctor" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                </div>
+                                <h3 className="font-black text-xl text-gray-900">Senior Medical Specialist</h3>
+                                <p className="text-sm font-bold uppercase tracking-widest mt-1" style={{ color: medicalGreen }}>Cardiac & Multispeciality Expert</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <Footer />
         </div>
     );
 }
