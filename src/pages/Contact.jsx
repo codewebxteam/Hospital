@@ -1,228 +1,252 @@
 import { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { MapPin, Phone, Mail, ChevronRight, Globe, MessageSquare, Headphones, BarChart3, Users } from 'lucide-react';
+import { MapPin, Phone, Mail, ChevronRight, Globe, MessageSquare, Headphones, BarChart3, Users, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Contact() {
-    const [activeTab, setActiveTab] = useState('feedback');
+  const [activeTab, setActiveTab] = useState('feedback');
 
-    return (
-        <div className="flex flex-col min-h-screen bg-[#F8F9FA] font-sans">
-            <Header />
+  return (
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-50 to-white font-sans">
+      <Header />
 
-            <main className="flex-grow">
-                {/* Hero Section */}
-                <section className="bg-[#FAF3F0] py-16 md:py-24 border-b border-gray-100">
-                    <div className="container mx-auto px-4 lg:px-10 flex flex-col items-center text-center">
-                        <span className="text-[#E67E61] font-black uppercase tracking-widest text-xs mb-4">Support & Feedback</span>
-                        <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6">Contact us</h1>
-                        <p className="text-xl md:text-2xl text-gray-500 max-w-2xl font-medium leading-relaxed">
-                            For all types of queries, our support team is available 24/7 to assist you.
-                        </p>
+      <main className="flex-grow">
+        {/* Hero Section - Softer & Elegant */}
+        <section className="bg-gradient-to-br from-[#FAF3F0] via-white to-[#F0FAF5] py-20 md:py-32 border-b border-gray-100/50">
+          <div className="container mx-auto px-6 lg:px-12 text-center">
+            <span className="inline-block px-4 py-1.5 bg-green-100 text-green-700 font-bold uppercase tracking-wider text-xs rounded-full mb-6">
+              24/7 Support & Feedback
+            </span>
+            <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 tracking-tight mb-6">
+              We're Here to Help
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+              Reach out anytime — our dedicated team is ready to assist you with care and compassion.
+            </p>
+          </div>
+        </section>
+
+        {/* Corporate & Branches Info */}
+        <section className="container mx-auto px-6 lg:px-12 -mt-20 mb-20 relative z-10">
+          <div className="bg-white rounded-3xl shadow-xl border border-gray-100/80 overflow-hidden">
+            <div className="p-8 md:p-12 lg:p-16">
+              {/* Corporate Headquarters */}
+              <div className="pt-12 border-t border-gray-100">
+                <div className="flex items-center gap-5 mb-10">
+                  <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 shadow-inner">
+                    <MapPin size={32} strokeWidth={1.8} />
+                  </div>
+                  <h2 className="text-3xl font-extrabold text-gray-900">Gorakhpur Branch</h2>
+                </div>
+                <div className="grid md:grid-cols-2 gap-12">
+                  {/* Left - Main Contacts */}
+                  <div className="space-y-8">
+                    <ContactItem
+                      icon={<MapPin size={24} />}
+                      title="Address"
+                      content={
+                        <>
+                          Plot No. A-67, Near Vardayani Hospital,<br />
+                          Deoria Bypass Road, Taramandal,<br />
+                          Gorakhpur, Uttar Pradesh - 273001
+                        </>
+                      }
+                    />
+                    <ContactItem
+                      icon={<Phone size={24} />}
+                      title="Appointments"
+                      content={<span className="text-green-700 font-bold text-xl">9205 010 100</span>}
+                    />
+                   <EmailItem
+                      icon={<MessageSquare size={20} />}
+                      label="Feedback / Complaints"
+                      email="feedback@vartikaaarna.com"
+                    /> 
+                  </div>
+
+                  {/* Right - Emails */}<div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200 -mt-6 md:-mt-10">
+
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114104.44081214728!2d83.37805!3d26.7606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3991446a0c332489%3A0x1ff3f97fdcc6bfa2!2sTaramandal%2C%20Gorakhpur%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1699000000000"
+    width="100%"
+    height="400"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Gorakhpur Branch Location"
+  />
+                 
+                </div>
+              </div>
+
+             
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Get in Touch Form */}
+        <section className="bg-gradient-to-b from-white to-gray-50 py-20 md:py-28">
+          <div className="container mx-auto px-6 lg:px-12 max-w-5xl">
+            <h2 className="text-5xl font-extrabold text-gray-900 mb-4 text-center">Get in Touch</h2>
+            <p className="text-xl text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+              We'd love to hear from you. Please fill out the form below.
+            </p>
+
+            {/* Tabs */}
+            <div className="flex justify-center mb-12">
+              <div className="inline-flex bg-gray-100 rounded-full p-1.5 shadow-sm">
+                <button
+                  onClick={() => setActiveTab('feedback')}
+                  className={`px-8 py-3 rounded-full font-bold text-sm tracking-wide transition-all ${
+                    activeTab === 'feedback'
+                      ? 'bg-green-600 text-white shadow-md'
+                      : 'text-gray-600 hover:bg-white hover:shadow'
+                  }`}
+                >
+                  Feedback / Complaints
+                </button>
+                <button
+                  onClick={() => setActiveTab('queries')}
+                  className={`px-8 py-3 rounded-full font-bold text-sm tracking-wide transition-all ${
+                    activeTab === 'queries'
+                      ? 'bg-green-600 text-white shadow-md'
+                      : 'text-gray-600 hover:bg-white hover:shadow'
+                  }`}
+                >
+                  General Queries
+                </button>
+              </div>
+            </div>
+
+            {/* Form */}
+            <div className="bg-white rounded-3xl shadow-xl p-10 md:p-14 border border-gray-100">
+              <form className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-bold text-gray-800 mb-2.5">
+                      Type of {activeTab === 'feedback' ? 'Feedback' : 'Query'} <span className="text-red-500">*</span>
+                    </label>
+                    <select className="w-full px-5 py-4 bg-white border border-gray-200 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all appearance-none">
+                      <option>Select Type</option>
+                      <option>General Inquiry</option>
+                      <option>Appointment Related</option>
+                      <option>Service Feedback</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+
+                  <FormInput label="First Name" required placeholder="Enter your first name" />
+                  <FormInput label="Last Name" required placeholder="Enter your last name" />
+
+                  <div className="flex gap-4">
+                    <div className="w-28">
+                      <label className="block text-sm font-bold text-gray-800 mb-2.5">Code</label>
+                      <input
+                        type="text"
+                        value="+91"
+                        disabled
+                        className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl text-center font-bold text-gray-700"
+                      />
                     </div>
-                </section>
-
-                {/* Corporate Info Card Section */}
-                <section className="container mx-auto px-4 lg:px-10 -mt-16 relative z-20 mb-16">
-                    <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border border-gray-100">
-                        <div className="flex flex-col md:flex-row items-start gap-8 md:gap-16">
-
-                            {/* Left: Branding & Main Contacts */}
-                            <div className="flex-1 space-y-8">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 border-2 border-green-600 rounded flex items-center justify-center text-green-600">
-                                        <div className="text-2xl font-bold">+</div>
-                                    </div>
-                                    <h2 className="text-2xl font-black text-[#221E20]">Vartika Aarna Heart Care Ltd.</h2>
-                                </div>
-
-                                <div className="space-y-6">
-                                    <div className="flex items-start gap-4 group">
-                                        <div className="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-700 group-hover:bg-green-100 transition-colors">
-                                            <MapPin size={20} />
-                                        </div>
-                                        <div>
-                                            <p className="text-[#221E20] leading-relaxed font-bold">
-                                                Tower A, Unitech Business Park, Block - F, <br />
-                                                South City 1, Sector - 41, Gurgaon, Haryana - 122001
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-center gap-4 group">
-                                        <div className="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-700 group-hover:bg-green-100 transition-colors">
-                                            <Phone size={20} />
-                                        </div>
-                                        <p className="text-[#221E20] font-black">
-                                            For Appointment Related Queries - <span className="text-green-700">9205 010 100</span>
-                                        </p>
-                                    </div>
-
-                                    <div className="flex items-center gap-4 group">
-                                        <div className="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-700 group-hover:bg-green-100 transition-colors">
-                                            <Building2Icon />
-                                        </div>
-                                        <p className="text-[#221E20] font-black">
-                                            Corporate Office - <span className="text-gray-900 font-bold">+91-124 4921021 / +91-124 492 1041</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Right: Email Grid */}
-                            <div className="md:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 pt-8 md:pt-0 border-t md:border-t-0 md:border-l border-gray-100 md:pl-16">
-                                <EmailContact
-                                    icon={<MessageSquare size={18} />}
-                                    label="For feedback/complaints please write to:"
-                                    email="feedback@vartikaaarna.com"
-                                />
-                                <EmailContact
-                                    icon={<Headphones size={18} />}
-                                    label="For general/business related queries contact:"
-                                    email="reachus@vartikaaarna.com"
-                                />
-                                <EmailContact
-                                    icon={<BarChart3 size={18} />}
-                                    label="For investors related queries contact:"
-                                    email="investor.relations@vartikaaarna.com"
-                                />
-                                <EmailContact
-                                    icon={<Globe size={18} />}
-                                    label="For international patient queries contact:"
-                                    email="ips@vartikaaarna.com"
-                                />
-                            </div>
-                        </div>
+                    <div className="flex-1">
+                      <FormInput label="Mobile Number" required type="tel" placeholder="Enter mobile number" />
                     </div>
-                </section>
+                  </div>
 
-                {/* Get in Touch Form Section */}
-                <section className="bg-white py-20 border-t border-gray-100">
-                    <div className="container mx-auto px-4 lg:px-10 max-w-5xl">
-                        <div className="mb-12">
-                            <h2 className="text-4xl font-black text-gray-900 mb-8">Get in touch</h2>
+                  <FormInput label="Email" required type="email" placeholder="your@email.com" className="md:col-span-2" />
 
-                            {/* Tabs */}
-                            <div className="flex border-b border-gray-200">
-                                <button
-                                    onClick={() => setActiveTab('feedback')}
-                                    className={`px-8 py-4 font-black text-xs tracking-widest uppercase transition-all relative ${activeTab === 'feedback'
-                                        ? 'text-white bg-[#E67E61] shadow-lg shadow-orange-900/10'
-                                        : 'text-gray-400 hover:text-gray-600 bg-gray-50'
-                                        }`}
-                                >
-                                    Feedback/ Complaints
-                                    {activeTab === 'feedback' && (
-                                        <span className="absolute bottom-0 left-0 w-full h-[4px] bg-orange-700"></span>
-                                    )}
-                                </button>
-                                <button
-                                    onClick={() => setActiveTab('queries')}
-                                    className={`px-8 py-4 font-black text-xs tracking-widest uppercase transition-all relative ${activeTab === 'queries'
-                                        ? 'text-white bg-[#E67E61] shadow-lg shadow-orange-900/10'
-                                        : 'text-gray-400 hover:text-gray-600 bg-gray-50'
-                                        }`}
-                                >
-                                    Queries
-                                    {activeTab === 'queries' && (
-                                        <span className="absolute bottom-0 left-0 w-full h-[4px] bg-orange-700"></span>
-                                    )}
-                                </button>
-                            </div>
-                        </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-bold text-gray-800 mb-2.5">
+                      Preferred Hospital <span className="text-red-500">*</span>
+                    </label>
+                    <select className="w-full px-5 py-4 bg-white border border-gray-200 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all appearance-none">
+                      <option>Select Hospital</option>
+                      <option>Vartika Aarna - Gurgaon</option>
+                      <option>Vartika Aarna - Gorakhpur</option>
+                      <option>Vartika Aarna - Delhi</option>
+                      <option>Vartika Aarna - Mumbai</option>
+                    </select>
+                  </div>
 
-                        {/* Form Container */}
-                        <div className="bg-[#F8F9FA] p-8 md:p-12 rounded-xl border border-gray-100 shadow-sm">
-                            <form className="space-y-6">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="md:col-span-2">
-                                        <label className="block text-[13px] font-black text-gray-900 mb-2">
-                                            Type of {activeTab === 'feedback' ? 'Feedback' : 'Query'} <span className="text-red-500">*</span>
-                                        </label>
-                                        <select className="w-full bg-white border-2 border-gray-100 rounded-lg px-4 py-3 text-sm font-bold text-gray-900 focus:outline-none focus:ring-4 focus:ring-green-600/10 focus:border-green-600 appearance-none bg-no-repeat bg-[right_1.5rem_center] bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%236b7280%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%20%2F%3E%3C%2Fsvg%3E')] transition-all">
-                                            <option>Select Type</option>
-                                            <option>General Inquiry</option>
-                                            <option>Appointment Issue</option>
-                                            <option>Service Feedback</option>
-                                            <option>Other</option>
-                                        </select>
-                                    </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-bold text-gray-800 mb-2.5">
+                      Your {activeTab === 'feedback' ? 'Feedback' : 'Message'} <span className="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      rows={5}
+                      className="w-full px-5 py-4 bg-white border border-gray-200 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all resize-none"
+                      placeholder={`Please share your ${activeTab.toLowerCase()}...`}
+                    ></textarea>
+                  </div>
+                </div>
 
-                                    <div>
-                                        <label className="block text-[13px] font-black text-gray-900 mb-2">First Name <span className="text-red-500">*</span></label>
-                                        <input type="text" className="w-full bg-white border-2 border-gray-100 rounded-lg px-4 py-3 text-sm font-bold text-gray-900 focus:outline-none focus:ring-4 focus:ring-green-600/10 focus:border-green-600 transition-all" placeholder="Enter First Name" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-[13px] font-black text-gray-900 mb-2">Last Name <span className="text-red-500">*</span></label>
-                                        <input type="text" className="w-full bg-white border-2 border-gray-100 rounded-lg px-4 py-3 text-sm font-bold text-gray-900 focus:outline-none focus:ring-4 focus:ring-green-600/10 focus:border-green-600 transition-all" placeholder="Enter Last Name" />
-                                    </div>
+                <div className="text-center">
+                  <button
+                    type="submit"
+                    className="bg-green-600 hover:bg-green-700 text-white px-12 py-4 rounded-full font-bold text-sm tracking-widest uppercase shadow-lg shadow-green-200/50 transition-all transform hover:scale-[1.02]"
+                  >
+                    Submit Your Message
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
 
-                                    <div className="flex gap-4">
-                                        <div className="w-24">
-                                            <label className="block text-[13px] font-black text-gray-900 mb-2">Country Code</label>
-                                            <input type="text" value="+91" disabled className="w-full bg-gray-50 border-2 border-gray-100 rounded-lg px-4 py-3 text-sm text-gray-900 font-black text-center" />
-                                        </div>
-                                        <div className="flex-1">
-                                            <label className="block text-[13px] font-black text-gray-900 mb-2">Mobile Number <span className="text-red-500">*</span></label>
-                                            <input type="tel" className="w-full bg-white border-2 border-gray-100 rounded-lg px-4 py-3 text-sm font-bold text-gray-900 focus:outline-none focus:ring-4 focus:ring-green-600/10 focus:border-green-600 transition-all" placeholder="Enter Mobile Number" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label className="block text-[13px] font-black text-gray-900 mb-2">Email <span className="text-red-500">*</span></label>
-                                        <input type="email" className="w-full bg-white border-2 border-gray-100 rounded-lg px-4 py-3 text-sm font-bold text-gray-900 focus:outline-none focus:ring-4 focus:ring-green-600/10 focus:border-green-600 transition-all" placeholder="Enter Email" />
-                                    </div>
-
-                                    <div className="md:col-span-2">
-                                        <label className="block text-[13px] font-black text-gray-900 mb-2">Hospitals <span className="text-red-500">*</span></label>
-                                        <select className="w-full bg-white border-2 border-gray-100 rounded-lg px-4 py-3 text-sm font-bold text-gray-900 focus:outline-none focus:ring-4 focus:ring-green-600/10 focus:border-green-600 appearance-none bg-no-repeat bg-[right_1.5rem_center] bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%236b7280%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%20%2F%3E%3C%2Fsvg%3E')] transition-all">
-                                            <option>Select Hospital</option>
-                                            <option>Vartika Aarna - Gurgaon</option>
-                                            <option>Vartika Aarna - Delhi</option>
-                                            <option>Vartika Aarna - Mumbai</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="md:col-span-2">
-                                        <label className="block text-[13px] font-black text-gray-900 mb-2">{activeTab === 'feedback' ? 'Feedback' : 'Query'} <span className="text-red-500">*</span></label>
-                                        <textarea rows="4" className="w-full bg-white border-2 border-gray-100 rounded-lg px-4 py-3 text-sm font-bold text-gray-900 focus:outline-none focus:ring-4 focus:ring-green-600/10 focus:border-green-600 transition-all" placeholder={`Enter your ${activeTab}`}></textarea>
-                                    </div>
-                                </div>
-
-                                <button type="submit" className="bg-green-700 text-white px-10 py-3 rounded-lg font-black text-xs tracking-widest uppercase hover:bg-green-800 shadow-lg shadow-green-900/10 transition-all">
-                                    Submit
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-            <Footer />
-        </div>
-    );
+      <Footer />
+    </div>
+  );
 }
 
-function EmailContact({ icon, label, email }) {
-    return (
-        <div className="flex items-start gap-4 group">
-            <div className="w-10 h-10 border border-gray-100 rounded-full flex items-center justify-center text-gray-400 group-hover:bg-[#E67E61]/5 group-hover:text-[#E67E61] group-hover:border-[#E67E61]/20 transition-all">
-                {icon}
-            </div>
-            <div className="space-y-1">
-                <p className="text-[11px] font-black text-[#E67E61] uppercase tracking-widest">{label}</p>
-                <a href={`mailto:${email}`} className="text-[#221E20] font-black hover:text-green-700 transition-colors block leading-tight text-sm">
-                    {email}
-                </a>
-            </div>
-        </div>
-    );
+// Reusable Components
+function ContactItem({ icon, title, content }) {
+  return (
+    <div className="flex items-start gap-5 group">
+      <div className="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 group-hover:bg-green-100 transition-colors shadow-sm">
+        {icon}
+      </div>
+      <div>
+        <h3 className="text-lg font-bold text-gray-800 mb-1.5">{title}</h3>
+        <p className="text-gray-700 leading-relaxed">{content}</p>
+      </div>
+    </div>
+  );
 }
 
-function Building2Icon() {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" /><path d="M6 12h12" /><path d="M6 7h12" /><path d="M6 17h12" /><path d="M10 22v-4a2 2 0 0 1 2-2v0a2 2 0 0 1 2 2v4" />
-        </svg>
-    );
+function EmailItem({ icon, label, email }) {
+  return (
+    <div className="flex items-start gap-5 group">
+      <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-500 group-hover:bg-green-50 group-hover:text-green-600 transition-colors">
+        {icon}
+      </div>
+      <div>
+        <p className="text-xs font-bold text-green-600 uppercase tracking-wider mb-1">{label}</p>
+        <a
+          href={`mailto:${email}`}
+          className="text-gray-900 font-bold hover:text-green-700 transition-colors block"
+        >
+          {email}
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function FormInput({ label, required, type = "text", placeholder, className = "" }) {
+  return (
+    <div className={className}>
+      <label className="block text-sm font-bold text-gray-800 mb-2.5">
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+      <input
+        type={type}
+        className="w-full px-5 py-4 bg-white border border-gray-200 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+        placeholder={placeholder}
+      />
+    </div>
+  );
 }
