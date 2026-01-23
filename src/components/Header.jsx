@@ -35,11 +35,13 @@ export default function Header() {
     };
 
     return (
-        <header className="w-full bg-white font-sans sticky top-0 z-50">
+ 
+ <header className="w-full bg-white font-sans ">
+
             <RequestCallbackModal isOpen={isCallbackOpen} onClose={() => setIsCallbackOpen(false)} />
             {/* Top Bar */}
             <div className="border-b border-gray-100 hidden lg:block bg-[#F8F9FA]">
-                <div className="container mx-auto px-4 lg:px-10 flex justify-end items-center py-1.5 gap-6 text-[12px] text-gray-600 font-semibold tracking-wide">
+                <div className="container mx-auto px-4 lg:px-10 flex justify-end items-center pt-0.5 pb-0  gap-6 text-[12px] text-gray-600 font-semibold tracking-wide">
                     <nav className="flex gap-6">
                         <Link to="/doctors" className="hover:text-green-700 transition-colors">Find a Doctor</Link>
                         <Link to="/investors" className="hover:text-green-700 transition-colors">Investors</Link>
@@ -74,13 +76,19 @@ export default function Header() {
                             </div>
                         )}
                     </div>
-
                     <div className="flex items-center gap-4 border-l border-gray-200 pl-6">
                         <Search size={18} className="cursor-pointer hover:text-green-700 hover:scale-110 transition-all duration-300" />
                         <Link to="/emergency" className="relative group">
                             <div className="w-9 h-9 rounded-full bg-red-50 flex items-center justify-center cursor-pointer group-hover:bg-red-600 group-hover:shadow-lg group-hover:shadow-red-200 transition-all duration-500 overflow-hidden">
                                 <span className="text-xl group-hover:scale-125 transition-transform duration-500">🚑</span>
                             </div>
+
+
+
+
+
+
+
                             {/* Mobile tooltip style indicator */}
                             <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity font-black pointer-events-none whitespace-nowrap">
                                 EMERGENCY
@@ -91,79 +99,89 @@ export default function Header() {
             </div>
 
             {/* Middle Bar (Logo & Nav) */}
-            <div className="container mx-auto px-4 lg:px-10 py-3 flex justify-between items-center relative">
+
+            <div className="container mx-auto px-4 lg:px-10 py-1 flex justify-between items-center relative">
                 {/* Logo Section */}
-                <Link to="/" className="flex items-center gap-3">
-                    <div className="flex items-center justify-center w-10 h-10 border-2 border-green-600 rounded-sm">
-                        <span className="text-green-600 text-3xl font-black leading-none">+</span>
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-lg md:text-xl font-bold text-[#008542] leading-tight max-w-[280px]">
-                            Vartika Aarna Heart Care and Multispeciality Hospital
-                        </span>
-                    </div>
-                </Link>
+
+
+<div className="flex items-center gap-6 px-1 py-0">
+
+    {/* Logo + Name Wrapper */}
+    <Link to="/" className="flex flex-col items-center text-center flex-shrink-0">
+
+        {/* Logo */}
+        <img
+            src="/logo.png"
+            alt="Vartika Aarna Hospital Logo"
+            className="h-[150px] w-[150px] object-contain"
+        />
+
+        {/* Hospital Name */}
+        {/* <span className="mt-2 text-lg md:text-xl font-bold text-[#008542] leading-snug max-w-[320px]">
+            Vartika Aarna Heart Care and Multispeciality Hospital
+        </span> */}
+
+    </Link>
+
+</div>
+
+
+
+
+
+
+
+
+
 
                 {/* Main Nav Items */}
                 <nav className="hidden xl:flex items-center gap-4 text-[13px] font-bold text-gray-700 uppercase tracking-tight">
-                    {/* Hospitals Mega Menu */}
+                    {/* Departments Mega Menu */}
                     <div className="relative group/mega pb-1">
-                        <Link to="/hospitals" className="flex items-center gap-1 group-hover/mega:text-green-700 border-b-2 border-transparent group-hover/mega:border-[#E67E61] transition-all">
-                            <span>Hospitals</span> <ChevronDown size={14} className="group-hover/mega:rotate-180 transition-transform" />
+                        <Link to="/departments" className="flex items-center gap-1 group-hover/mega:text-green-700 border-b-2 border-transparent group-hover/mega:border-[#E67E61] transition-all">
+                            <span>Departments</span> <ChevronDown size={14} className="group-hover/mega:rotate-180 transition-transform" />
                         </Link>
 
                         {/* Mega Menu Content */}
-                        <div className="fixed left-0 top-[135px] w-full bg-white shadow-2xl border-t-2 border-[#E67E61] opacity-0 invisible group-hover/mega:opacity-100 group-hover/mega:visible transition-all duration-300 z-[100] h-[500px] flex flex-col">
-                            {/* Region Tabs */}
-                            <div className="bg-[#FAF3F0] w-full">
-                                <div className="container mx-auto px-4 lg:px-10 flex border-b border-gray-200">
-                                    {Object.keys(hospitalData).map(region => (
-                                        <button
-                                            key={region}
-                                            onMouseEnter={() => {
-                                                setActiveRegion(region);
-                                                setActiveState(Object.keys(hospitalData[region])[0]);
-                                            }}
-                                            className={`px-8 py-5 text-[13px] font-black tracking-widest uppercase transition-all relative ${activeRegion === region ? 'text-[#E67E61]' : 'text-gray-500 hover:text-gray-900'}`}
-                                        >
-                                            {region}
-                                            {activeRegion === region && <span className="absolute bottom-0 left-0 w-full h-1 bg-[#E67E61]"></span>}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
 
-                            {/* State & Hospital List */}
-                            <div className="flex-grow flex container mx-auto px-4 lg:px-10 overflow-hidden">
-                                {/* Left Sidebar: States */}
-                                <div className="w-1/4 border-r border-gray-100 py-6 overflow-y-auto">
-                                    {Object.keys(hospitalData[activeRegion]).map(state => (
-                                        <div
-                                            key={state}
-                                            onMouseEnter={() => setActiveState(state)}
-                                            className={`px-6 py-4 cursor-pointer transition-all text-sm font-black border-l-4 ${activeState === state ? 'bg-[#FAF3F0] text-[#E67E61] border-[#E67E61]' : 'text-gray-900 border-transparent hover:bg-gray-50'}`}
-                                        >
-                                            {state}
-                                        </div>
-                                    ))}
-                                </div>
 
-                                {/* Right Content: Hospitals */}
-                                <div className="w-3/4 py-10 px-12 overflow-y-auto bg-white grid grid-cols-2 gap-x-12 gap-y-6 content-start">
-                                    {hospitalData[activeRegion][activeState].map((hospital, idx) => (
+                        <div className="fixed left-0 top-[135px] w-full bg-white shadow-2xl border-t-2 border-[#E67E61] opacity-0 invisible group-hover/mega:opacity-100 group-hover/mega:visible transition-all duration-300 z-[100]">
+                            {/* Departments Grid */}
+
+
+                            <div className="container mx-auto px-4 lg:px-10 py-12">
+                                <div className="grid grid-cols-3 gap-x-8 gap-y-6">
+                                    {[
+                                        { name: "Cardiology", icon: "", path: "/department/cardiology", desc: "Heart & Cardiac Care" },
+                                        { name: "Orthopedics", icon: "", path: "/department/orthopedics", desc: "Bone & Joint Care" },
+                                        { name: "Neurology", icon: "", path: "/department/neurology", desc: "Brain & Nervous System" },
+                                        { name: "Pediatrics", icon: "", path: "/department/pediatrics", desc: "Child Health Care" },
+                                        { name: "Oncology", icon: "", path: "/department/oncology", desc: "Cancer Treatment" },
+                                        { name: "Gastroenterology", icon: "", path: "/department/gastroenterology", desc: "Digestive Health" },
+                                        { name: "Gynecology", icon: "", path: "/department/gynecology", desc: "Women's Health" },
+                                        { name: "ICU & Critical Care", icon: "", path: "/department/icu", desc: "Critical Care Unit" },
+                                        { name: "Laboratory Services", icon: "", path: "/department/laboratory", desc: "Diagnostic Tests" }
+                                    ].map((dept, idx) => (
                                         <Link
                                             key={idx}
-                                            to="/hospitals"
-                                            className="text-gray-700 font-bold hover:text-green-700 text-sm flex items-start gap-2 group/hosp"
+                                            to={dept.path}
+                                            className="group block p-4 rounded-lg hover:bg-green-50 transition-all border-2 border-transparent hover:border-green-300"
                                         >
-                                            <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2 shrink-0 group-hover/hosp:scale-150 transition-transform"></span>
-                                            {hospital}
+                                            <div className="flex items-start gap-3">
+                                                <span className="text-2xl">{dept.icon}</span>
+                                                <div>
+                                                    <h4 className="font-black text-gray-900 group-hover:text-green-700">{dept.name}</h4>
+                                                    <p className="text-[11px] text-gray-600 font-semibold">{dept.desc}</p>
+                                                </div>
+                                            </div>
                                         </Link>
                                     ))}
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                     {/* Specialities Mega Menu */}
                     <div className="relative group/specialty pb-1">
                         <Link to="/specialities" className="flex items-center gap-1 group-hover/specialty:text-green-700 transition-all">
@@ -175,7 +193,7 @@ export default function Header() {
                             <div className="container mx-auto px-4 lg:px-10 grid grid-cols-4 gap-x-8">
                                 {/* Column 1 */}
                                 <div className="space-y-1">
-                                    <SpecialtyLink title="Cardiac Sciences" icon="❤️" highlighted />
+                                    <SpecialtyLink title="Cardiac Sciences" icon="" highlighted />
                                     <SpecialtyLink title="Critical Care" />
                                     <SpecialtyLink title="Emergency and Trauma" />
                                     <SpecialtyLink title="General Surgery" />
@@ -276,7 +294,7 @@ export default function Header() {
             </div>
 
             {/* Action Bar (Pink Background) */}
-            <div className="bg-[#FAF3F0] w-full py-2 shadow-sm">
+            <div className="bg-[#FAF3F0] w-full py-1 shadow-sm">
                 <div className="container mx-auto px-4 lg:px-10 flex flex-wrap justify-center lg:justify-end items-center gap-4 md:gap-8 text-[13px] font-bold text-gray-800">
                     <div
                         onClick={() => setIsCallbackOpen(true)}
