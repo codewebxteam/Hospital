@@ -32,8 +32,8 @@ export default function Footer() {
     return (
         <footer className="bg-[#EEF8F5] py-20 font-sans border-t border-gray-200">
             <div className="container mx-auto px-4 lg:px-10">
-                {/* 6-Column Grid */}
-                <div className="grid grid-cols-2 lg:grid-cols-6 gap-8 mb-20">
+                {/* 6-Column Grid - Stacked on mobile, 2 cols on tablet, 6 on desktop */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 mb-20">
                     {footerSections.map((section, idx) => (
                         <div key={idx}>
                             <h4 className="text-[13px] font-black text-[#221E20] uppercase tracking-widest mb-6 px-1">
