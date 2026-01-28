@@ -69,29 +69,27 @@ export default function Header() {
                             <Headset size={14} /> Contact us
                         </Link>
                     </nav>
+                    
+                   {/* Pinned Hospital Location: Vartika Aarna Heart Care and Multispeciality Hospital */}
                     <div className="flex items-center gap-2 border-l border-gray-200 pl-6 cursor-pointer hover:text-green-700 transition-colors">
                         <MapPin size={16} />
                         <a
-                            href="https://www.google.com/maps/place/Vartika+Aarna+Heart+Care+and+Multispeciality+Hospital/@26.730303,83.419444,17z/data=!3m1!4b1!4m6!3m5!1s0x39915d0059e69317:0x5075631405e3532c!8m2!3d26.730303!4d83.419444!16s%2Fg%2F11wsm_z0_?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D"
+                            href="https://www.google.com/maps/search/Vartika+Aarna+Heart+Care+and+Multispeciality+Hospital+Gorakhpur"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1 font-bold truncate max-w-[200px]"
-                            title="Plot No. A-67, Near Vardayani Hospital, Deoria Bypass Road, Taramandal, Gorakhpur, Uttar Pradesh - 273001"
+                            className="flex items-center gap-1 font-bold"
+                            title="Vartika Aarna Heart Care and Multispeciality Hospital, Taramandal, Gorakhpur"
                         >
-                            Gorakhpur
+                            Gorakhpur, U.P.
                         </a>
                     </div>
+                    
                     <div className="flex items-center gap-4 border-l border-gray-200 pl-6">
 
                         <Link to="/emergency" className="relative group">
                             <div className="w-9 h-9 rounded-full bg-red-50 flex items-center justify-center cursor-pointer group-hover:bg-red-600 group-hover:shadow-lg group-hover:shadow-red-200 transition-all duration-500 overflow-hidden">
                                 <span className="text-xl group-hover:scale-125 transition-transform duration-500">🚑</span>
                             </div>
-
-
-
-
-
 
 
                             {/* Mobile tooltip style indicator */}
