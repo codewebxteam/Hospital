@@ -11,11 +11,11 @@ import SpecialityPage from './pages/SpecialityPage';
 
 import ResourcesPage from './pages/ResourcesPage';
 import BlogPage from './pages/BlogPage';
-import InvestorsPage from './pages/InvestorsPage';
-import CareersPage from './pages/CareersPage';
+
+
 import CSRPage from './pages/CSRPage';
 import CentreOfExcellencePage from './pages/CentreOfExcellencePage';
-import InternationalSectionPage from './pages/InternationalSectionPage';
+
 import EmergencyPage from './pages/EmergencyPage';
 import MedicalProceduresPage from './pages/MedicalProceduresPage';
 import ImmigrationServicesPage from './pages/ImmigrationServicesPage';
@@ -43,7 +43,7 @@ function App() {
         <Route path="/health-checkup" element={<HealthCheckupPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/specialities" element={<SpecialityPage />} />
-       
+
         <Route path="/departments" element={<DepartmentsPage />} />
         <Route path="/department/cardiology" element={<CardiologyPage />} />
         <Route path="/department/orthopedics" element={<OrthopedicsPage />} />
@@ -56,11 +56,10 @@ function App() {
         <Route path="/department/laboratory" element={<LaboratoryPage />} />
         <Route path="/resources" element={<ResourcesPage />} />
         <Route path="/blog" element={<BlogPage />} />
-        <Route path="/investors" element={<InvestorsPage />} />
-        <Route path="/careers" element={<CareersPage />} />
+
         <Route path="/csr" element={<CSRPage />} />
         <Route path="/centre-of-excellence" element={<CentreOfExcellencePage />} />
-        <Route path="/international" element={<InternationalSectionPage />} />
+
         <Route path="/emergency" element={<EmergencyPage />} />
         <Route path="/medical-procedures" element={<MedicalProceduresPage />} />
         <Route path="/immigration-services" element={<ImmigrationServicesPage />} />

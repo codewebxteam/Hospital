@@ -63,7 +63,28 @@ const doctors = [
 
 export default function Doctors() {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const cardsToShow = 6;
+    const [cardsToShow, setCardsToShow] = useState(4);
+
+    // Responsive cardsToShow
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 640) {
+                setCardsToShow(1);
+            } else if (window.innerWidth < 768) {
+                setCardsToShow(2);
+            } else if (window.innerWidth < 1024) {
+                setCardsToShow(3);
+            } else if (window.innerWidth < 1280) {
+                setCardsToShow(4);
+            } else {
+                setCardsToShow(5);
+            }
+        };
+
+        handleResize(); // Initial check
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Auto-slide every 3 seconds
     useEffect(() => {
@@ -71,7 +92,7 @@ export default function Doctors() {
             setCurrentIndex((prev) => (prev + 1) % (doctors.length - cardsToShow + 1));
         }, 3000);
         return () => clearInterval(timer);
-    }, []);
+    }, [cardsToShow]);
 
     const nextSlide = () => {
         setCurrentIndex((prev) => Math.min(prev + 1, doctors.length - cardsToShow));
@@ -97,32 +118,40 @@ export default function Doctors() {
                     <button
                         onClick={prevSlide}
                         disabled={currentIndex === 0}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-gray-600 hover:text-green-600 hover:shadow-xl transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 z-10 w-8 h-8 md:w-10 md:h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-gray-600 hover:text-green-600 hover:shadow-xl transition-all disabled:opacity-30 disabled:cursor-not-allowed"
                     >
                         <ChevronLeft size={20} />
                     </button>
                     <button
                         onClick={nextSlide}
                         disabled={currentIndex >= doctors.length - cardsToShow}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-gray-600 hover:text-green-600 hover:shadow-xl transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 z-10 w-8 h-8 md:w-10 md:h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-gray-600 hover:text-green-600 hover:shadow-xl transition-all disabled:opacity-30 disabled:cursor-not-allowed"
                     >
                         <ChevronRight size={20} />
                     </button>
 
                     {/* Cards Slider */}
-                    <div className="overflow-hidden">
+                    <div className="overflow-hidden py-4 -mx-4 px-4">
                         <div
                             className="flex transition-transform duration-500 ease-in-out gap-4"
-                            style={{ transform: `translateX(-${currentIndex * (100 / cardsToShow + 1.5)}%)` }}
+                            style={{ transform: `translateX(-${currentIndex * (100 / cardsToShow + (16 / cardsToShow))}%)` }}
                         >
+                            {/* Note: The math above is simplified. Better to scroll by item width. 
+                                Actually, if flex items are sized correctly, translateX(currentIndex * 100%) moves entire view. 
+                                Iterate one by one: translateX(-currentIndex * (100 / cardsToShow) %) ?? 
+                                If gap is used, it complicates the % math. 
+                                Let's use negative margin approach or calc width carefully. 
+                                Using calc(100% / cardsToShow - gap) is safest.
+                            */}
                             {doctors.map((doctor) => (
                                 <div
                                     key={doctor.id}
-                                    className="flex-shrink-0 w-[calc(100%/6-12px)] min-w-[160px]"
+                                    className="flex-shrink-0"
+                                    style={{ width: `calc((100% - ${(cardsToShow - 1) * 16}px) / ${cardsToShow})` }}
                                 >
-                                    <div className="bg-white rounded-2xl overflow-hidden border-2 border-gray-100 hover:border-green-300 shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
+                                    <div className="bg-white rounded-2xl overflow-hidden border-2 border-gray-100 hover:border-green-300 shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 h-full">
                                         {/* Image */}
-                                        <div className="h-36 overflow-hidden relative">
+                                        <div className="h-48 md:h-56 overflow-hidden relative">
                                             <img
                                                 src={doctor.image}
                                                 alt={doctor.name}
@@ -134,17 +163,17 @@ export default function Doctors() {
                                         </div>
 
                                         {/* Info */}
-                                        <div className="p-3 text-center">
-                                            <h3 className="text-sm font-black text-gray-900 leading-tight group-hover:text-green-700 transition-colors truncate">{doctor.name}</h3>
-                                            <p className="text-[10px] text-green-600 font-bold uppercase tracking-wider mt-1 truncate">{doctor.role}</p>
-                                            <p className="text-[10px] text-gray-400 font-bold mt-1">{doctor.experience}</p>
+                                        <div className="p-4 text-center">
+                                            <h3 className="text-base md:text-lg font-black text-gray-900 leading-tight group-hover:text-green-700 transition-colors truncate">{doctor.name}</h3>
+                                            <p className="text-xs text-green-600 font-bold uppercase tracking-wider mt-1 truncate">{doctor.role}</p>
+                                            <p className="text-xs text-gray-500 font-bold mt-1">{doctor.experience}</p>
 
                                             {/* Book Appointment Button */}
                                             <Link
                                                 to={`/book-appointment/${doctor.id}`}
-                                                className="mt-3 w-full bg-green-600 text-white text-[10px] font-black py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-1 uppercase tracking-wide"
+                                                className="mt-4 w-full bg-green-600 text-white text-xs font-black py-2.5 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-1 uppercase tracking-wide"
                                             >
-                                                <Calendar size={12} /> Book
+                                                <Calendar size={14} /> Book
                                             </Link>
                                         </div>
                                     </div>
@@ -156,7 +185,7 @@ export default function Doctors() {
 
                 {/* Dots Indicator */}
                 <div className="flex justify-center gap-2 mt-8">
-                    {Array.from({ length: doctors.length - cardsToShow + 1 }).map((_, idx) => (
+                    {Array.from({ length: Math.max(0, doctors.length - cardsToShow + 1) }).map((_, idx) => (
                         <button
                             key={idx}
                             onClick={() => setCurrentIndex(idx)}

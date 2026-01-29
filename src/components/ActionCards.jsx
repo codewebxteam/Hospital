@@ -89,7 +89,7 @@ export default function ActionCards() {
                             <span>We can help you book</span>
                             <ArrowRight size={18} className="text-teal-600 animate-soft-breathing" />
                         </h2>
-                        <div className="grid grid-cols-2 gap-4 lg:gap-5">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
                             {bookingSupport.map((card, i) => (
                                 <Link
                                     key={i}

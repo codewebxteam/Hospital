@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Hero() {
     return (
-        <section className="relative min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden">
+        <section className="relative min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden py-20 md:py-0">
             {/* Background Image with Soft Gradient Overlay */}
             <div className="absolute inset-0 z-0">
                 <img

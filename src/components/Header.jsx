@@ -1,92 +1,95 @@
 import { Link } from 'react-router-dom';
-import { Search, ChevronDown, MapPin, Phone, Calendar, Stethoscope, Menu, X } from 'lucide-react';
+import { Search, ChevronDown, MapPin, Phone, Calendar, Stethoscope, Menu, X, UserRoundSearch, TrendingUp, Info, Briefcase, HeartHandshake, Headset, Building2, Activity, Award, Newspaper, BriefcaseMedical, User } from 'lucide-react';
 import { useState } from 'react';
 import RequestCallbackModal from './RequestCallbackModal';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isCallbackOpen, setIsCallbackOpen] = useState(false);
-    const [isLocationOpen, setIsLocationOpen] = useState(false);
-    const [selectedLocation, setSelectedLocation] = useState("--Select--");
 
-    const locations = ["Gurgaon", "Delhi", "Mumbai", "Bangalore", "Chennai"];
+    // Extracted Constants
+    const DEPARTMENTS_MENU = [
+        { name: "Cardiology", path: "/department/cardiology" },
+        { name: "Orthopedics", path: "/department/orthopedics" },
+        { name: "Neurology", path: "/department/neurology" },
+        { name: "Pediatrics", path: "/department/pediatrics" },
+        { name: "Oncology", path: "/department/oncology" },
+        { name: "Gastroenterology", path: "/department/gastroenterology" },
+        { name: "Gynecology", path: "/department/gynecology" },
+        { name: "ICU & Critical Care", path: "/department/icu" },
+        { name: "Laboratory", path: "/department/laboratory" }
+    ];
 
-    const [activeRegion, setActiveRegion] = useState("North India");
-    const [activeState, setActiveState] = useState("Delhi");
+    const SPECIALTIES_MENU = [
+        { title: "Cardiac Sciences" },
+        { title: "Thoracic Surgery" },
+        { title: "Interventional Cardiology" },
+        { title: "Pediatric Cardiology" },
+        { title: "Cardiac Anaesthesia" },
+        { title: "Vascular Surgery" },
+        { title: "Heart Transplant" },
+        { title: "Critical Care" },
+        { title: "Emergency and Trauma" }
+    ];
 
-    const hospitalData = {
-        "North India": {
-            "Delhi": ["Fortis Cancer Institute, Defence Colony", "Fortis CDOC, Chirag Enclave", "Fortis Escorts Heart Institute, Okhla", "Fortis Flt. Lt. Rajan Dhall Hospital, Vasant Kunj", "Fortis Hospital, Shalimar Bagh", "Fortis La Femme, Greater Kailash II"],
-            "Punjab": ["Fortis Hospital, Mohali", "Fortis Hospital, Ludhiana", "Fortis Hospital, Amritsar"],
-            "Haryana": ["Fortis Memorial Research Institute, Gurgaon", "Fortis Hospital, Faridabad"],
-            "Rajasthan": ["Fortis Escorts Hospital, Jaipur"],
-            "Uttar Pradesh": ["Fortis Hospital, Noida", "Fortis Escorts Hospital, Faridabad"]
-        },
-        "East India": {
-            "West Bengal": ["Fortis Hospital, Anandapur", "Fortis Medical Centre, Kolkata"]
-        },
-        "South India": {
-            "Karnataka": ["Fortis Hospital, Bannerghatta Road", "Fortis Hospital, Cunningham Road"],
-            "Tamil Nadu": ["Fortis Malar Hospital, Chennai"]
-        },
-        "West India": {
-            "Maharashtra": ["Fortis Hospital, Mulund", "Fortis Hiranandani Hospital, Vashi", "Fortis S.L. Raheja Hospital, Mahim"]
-        }
-    };
 
     return (
- 
- <header className="w-full bg-white font-sans ">
+
+        <header className="w-full bg-white font-sans ">
 
             <RequestCallbackModal isOpen={isCallbackOpen} onClose={() => setIsCallbackOpen(false)} />
             {/* Top Bar */}
             <div className="border-b border-gray-100 hidden lg:block bg-[#F8F9FA]">
                 <div className="container mx-auto px-4 lg:px-10 flex justify-end items-center pt-0.5 pb-0  gap-6 text-[12px] text-gray-600 font-semibold tracking-wide">
                     <nav className="flex gap-6">
-                        <Link to="/doctors" className="hover:text-green-700 transition-colors">Find a Doctor</Link>
-                        <Link to="/investors" className="hover:text-green-700 transition-colors">Investors</Link>
-                        <Link to="/about" className="hover:text-green-700 transition-colors">About us</Link>
-                        <Link to="/careers" className="hover:text-green-700 transition-colors">Careers</Link>
-                        <Link to="/csr" className="hover:text-green-700 transition-colors">CSR</Link>
-                        <Link to="/contact" className="hover:text-green-700 transition-colors">Contact us</Link>
+                        <Link to="/doctors" className="flex items-center gap-1 hover:text-green-700 transition-colors">
+                            <UserRoundSearch size={14} /> Find a Doctor
+                        </Link>
+
+                        {/* 
+                        <Link to="/investors" className="flex items-center gap-1 hover:text-green-700 transition-colors">
+                            <TrendingUp size={14} /> Investors
+                        </Link> */}
+
+
+                        <Link to="/about" className="flex items-center gap-1 hover:text-green-700 transition-colors">
+                            <Info size={14} /> About us
+                        </Link>
+
+                        {/* 
+                        <Link to="/careers" className="flex items-center gap-1 hover:text-green-700 transition-colors">
+                            <Briefcase size={14} /> Careers
+                        </Link> */}
+
+
+                        <Link to="/csr" className="flex items-center gap-1 hover:text-green-700 transition-colors">
+                            <HeartHandshake size={14} /> CSR
+                        </Link>
+                        <Link to="/contact" className="flex items-center gap-1 hover:text-green-700 transition-colors">
+                            <Headset size={14} /> Contact us
+                        </Link>
                     </nav>
-                    <div className="relative">
-                        <div
-                            className="flex items-center gap-2 border-l border-gray-200 pl-6 cursor-pointer hover:text-green-700 transition-colors"
-                            onClick={() => setIsLocationOpen(!isLocationOpen)}
+                    
+                   {/* Pinned Hospital Location: Vartika Aarna Heart Care and Multispeciality Hospital */}
+                    <div className="flex items-center gap-2 border-l border-gray-200 pl-6 cursor-pointer hover:text-green-700 transition-colors">
+                        <MapPin size={16} />
+                        <a
+                            href="https://www.google.com/maps/search/Vartika+Aarna+Heart+Care+and+Multispeciality+Hospital+Gorakhpur"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 font-bold"
+                            title="Vartika Aarna Heart Care and Multispeciality Hospital, Taramandal, Gorakhpur"
                         >
-                            <MapPin size={16} />
-                            <span className="flex items-center gap-1 font-bold">{selectedLocation} <ChevronDown size={14} className={`transition-transform duration-300 ${isLocationOpen ? 'rotate-180' : ''}`} /></span>
-                        </div>
-                        {/* Location Dropdown */}
-                        {isLocationOpen && (
-                            <div className="absolute top-full left-6 mt-2 w-48 bg-white shadow-2xl rounded-lg border border-gray-100 z-[60] py-2 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                                {locations.map(loc => (
-                                    <div
-                                        key={loc}
-                                        className="px-6 py-2.5 hover:bg-green-50 hover:text-green-700 cursor-pointer transition-colors font-bold text-[13px]"
-                                        onClick={() => {
-                                            setSelectedLocation(loc);
-                                            setIsLocationOpen(false);
-                                        }}
-                                    >
-                                        {loc}
-                                    </div>
-                                ))}
-                            </div>
-                        )}
+                            Gorakhpur, U.P.
+                        </a>
                     </div>
+                    
                     <div className="flex items-center gap-4 border-l border-gray-200 pl-6">
-                        <Search size={18} className="cursor-pointer hover:text-green-700 hover:scale-110 transition-all duration-300" />
+
                         <Link to="/emergency" className="relative group">
                             <div className="w-9 h-9 rounded-full bg-red-50 flex items-center justify-center cursor-pointer group-hover:bg-red-600 group-hover:shadow-lg group-hover:shadow-red-200 transition-all duration-500 overflow-hidden">
                                 <span className="text-xl group-hover:scale-125 transition-transform duration-500">🚑</span>
                             </div>
-
-
-
-
-
 
 
                             {/* Mobile tooltip style indicator */}
@@ -104,26 +107,26 @@ export default function Header() {
                 {/* Logo Section */}
 
 
-<div className="flex items-center gap-6 px-1 py-0">
+                <div className="flex items-center gap-6 px-1 py-0">
 
-    {/* Logo + Name Wrapper */}
-    <Link to="/" className="flex flex-col items-center text-center flex-shrink-0">
+                    {/* Logo + Name Wrapper */}
+                    <Link to="/" className="flex flex-col items-center text-center flex-shrink-0">
 
-        {/* Logo */}
-        <img
-            src="/logo.png"
-            alt="Vartika Aarna Hospital Logo"
-            className="h-[150px] w-[150px] object-contain"
-        />
+                        {/* Logo */}
+                        <img
+                            src="/logo.png"
+                            alt="Vartika Aarna Hospital Logo"
+                            className="h-[170px] w-[170px] object-contain"
+                        />
 
-        {/* Hospital Name */}
-        {/* <span className="mt-2 text-lg md:text-xl font-bold text-[#008542] leading-snug max-w-[320px]">
+                        {/* Hospital Name */}
+                        {/* <span className="mt-2 text-lg md:text-xl font-bold text-[#008542] leading-snug max-w-[320px]">
             Vartika Aarna Heart Care and Multispeciality Hospital
         </span> */}
 
-    </Link>
+                    </Link>
 
-</div>
+                </div>
 
 
 
@@ -138,45 +141,25 @@ export default function Header() {
                 <nav className="hidden xl:flex items-center gap-4 text-[13px] font-bold text-gray-700 uppercase tracking-tight">
                     {/* Departments Mega Menu */}
                     <div className="relative group/mega pb-1">
-                        <Link to="/departments" className="flex items-center gap-1 group-hover/mega:text-green-700 border-b-2 border-transparent group-hover/mega:border-[#E67E61] transition-all">
+                        <Link to="/departments" className="flex items-center gap-1 group-hover/mega:text-green-700 transition-all">
+                            <Building2 size={16} />
                             <span>Departments</span> <ChevronDown size={14} className="group-hover/mega:rotate-180 transition-transform" />
                         </Link>
 
                         {/* Mega Menu Content */}
 
 
-                        <div className="fixed left-0 top-[135px] w-full bg-white shadow-2xl border-t-2 border-[#E67E61] opacity-0 invisible group-hover/mega:opacity-100 group-hover/mega:visible transition-all duration-300 z-[100]">
-                            {/* Departments Grid */}
-
-
-                            <div className="container mx-auto px-4 lg:px-10 py-12">
-                                <div className="grid grid-cols-3 gap-x-8 gap-y-6">
-                                    {[
-                                        { name: "Cardiology", icon: "", path: "/department/cardiology", desc: "Heart & Cardiac Care" },
-                                        { name: "Orthopedics", icon: "", path: "/department/orthopedics", desc: "Bone & Joint Care" },
-                                        { name: "Neurology", icon: "", path: "/department/neurology", desc: "Brain & Nervous System" },
-                                        { name: "Pediatrics", icon: "", path: "/department/pediatrics", desc: "Child Health Care" },
-                                        { name: "Oncology", icon: "", path: "/department/oncology", desc: "Cancer Treatment" },
-                                        { name: "Gastroenterology", icon: "", path: "/department/gastroenterology", desc: "Digestive Health" },
-                                        { name: "Gynecology", icon: "", path: "/department/gynecology", desc: "Women's Health" },
-                                        { name: "ICU & Critical Care", icon: "", path: "/department/icu", desc: "Critical Care Unit" },
-                                        { name: "Laboratory Services", icon: "", path: "/department/laboratory", desc: "Diagnostic Tests" }
-                                    ].map((dept, idx) => (
-                                        <Link
-                                            key={idx}
-                                            to={dept.path}
-                                            className="group block p-4 rounded-lg hover:bg-green-50 transition-all border-2 border-transparent hover:border-green-300"
-                                        >
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-2xl">{dept.icon}</span>
-                                                <div>
-                                                    <h4 className="font-black text-gray-900 group-hover:text-green-700">{dept.name}</h4>
-                                                    <p className="text-[11px] text-gray-600 font-semibold">{dept.desc}</p>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    ))}
-                                </div>
+                        <div className="absolute top-full left-0 w-56 bg-white shadow-xl rounded-b-lg border-t-4 border-[#E67E61] opacity-0 invisible group-hover/mega:opacity-100 group-hover/mega:visible transition-all duration-300 z-[100]">
+                            <div className="py-2 flex flex-col">
+                                {DEPARTMENTS_MENU.map((dept, idx) => (
+                                    <Link
+                                        key={idx}
+                                        to={dept.path}
+                                        className="block px-6 py-2 text-[13px] font-bold text-gray-700 hover:text-green-700 hover:bg-green-50 transition-colors"
+                                    >
+                                        {dept.name}
+                                    </Link>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -185,76 +168,41 @@ export default function Header() {
                     {/* Specialities Mega Menu */}
                     <div className="relative group/specialty pb-1">
                         <Link to="/specialities" className="flex items-center gap-1 group-hover/specialty:text-green-700 transition-all">
+                            <Activity size={16} />
                             <span>Specialties</span> <ChevronDown size={14} className="group-hover/specialty:rotate-180 transition-transform" />
                         </Link>
 
                         {/* Mega Menu Content */}
-                        <div className="fixed left-0 top-[135px] w-full bg-white shadow-2xl border-t-2 border-[#E67E61] opacity-0 invisible group-hover/specialty:opacity-100 group-hover/specialty:visible transition-all duration-300 z-[100] py-10">
-                            <div className="container mx-auto px-4 lg:px-10 grid grid-cols-4 gap-x-8">
-                                {/* Column 1 */}
-                                <div className="space-y-1">
-                                    <SpecialtyLink title="Cardiac Sciences" icon="" highlighted />
-                                    <SpecialtyLink title="Critical Care" />
-                                    <SpecialtyLink title="Emergency and Trauma" />
-                                    <SpecialtyLink title="General Surgery" />
-                                    <SpecialtyLink title="Internal Medicine" />
-                                    <SpecialtyLink title="Neurointerventional Radiology" />
-                                    <SpecialtyLink title="Obstetrics and Gynaecology" />
-                                    <SpecialtyLink title="Paediatrics" />
-                                    <SpecialtyLink title="Plastic and Reconstructive Surgery" />
-                                    <SpecialtyLink title="Support Specialties" />
-                                </div>
-                                {/* Column 2 */}
-                                <div className="space-y-1">
-                                    <SpecialtyLink title="Infertility medicine" />
-                                    <SpecialtyLink title="Dental Science" />
-                                    <SpecialtyLink title="Endocrine Surgery" />
-                                    <SpecialtyLink title="Geriatric Medicine" />
-                                    <SpecialtyLink title="Liver Transplant and Hepatobiliary Sciences" />
-                                    <SpecialtyLink title="Neurology" />
-                                    <SpecialtyLink title="Ophthalmology" />
-                                    <SpecialtyLink title="Pain and Palliative Medicine" />
-                                    <SpecialtyLink title="Pulmonology" />
-                                    <SpecialtyLink title="Thoracic Surgery" />
-                                </div>
-                                {/* Column 3 */}
-                                <div className="space-y-1">
-                                    <SpecialtyLink title="Gastroenterology and Hepatobiliary Sciences" />
-                                    <SpecialtyLink title="Dermatology" />
-                                    <SpecialtyLink title="ENT" />
-                                    <SpecialtyLink title="Haematology" />
-                                    <SpecialtyLink title="Medical Genetics" />
-                                    <SpecialtyLink title="Neurosurgery" />
-                                    <SpecialtyLink title="Organ Transplant" />
-                                    <SpecialtyLink title="Palliative Medicine" />
-                                    <SpecialtyLink title="Radiology" />
-                                    <SpecialtyLink title="Transfusion Medicine" />
-                                </div>
-                                {/* Column 4 */}
-                                <div className="space-y-1">
-                                    <SpecialtyLink title="Nephrology" />
-                                    <SpecialtyLink title="Diabetology/Endocrinology" />
-                                    <SpecialtyLink title="Foetal Medicine" />
-                                    <SpecialtyLink title="Infectious Diseases" />
-                                    <SpecialtyLink title="Mental Health and Behavioural Sciences" />
-                                    <SpecialtyLink title="Oncology" />
-                                    <SpecialtyLink title="Orthopaedics" />
-                                    <SpecialtyLink title="Physiotherapy and Rehabilitation" />
-                                    <SpecialtyLink title="Rheumatology" />
-                                    <SpecialtyLink title="Urology" />
-                                </div>
+                        <div className="absolute top-full left-0 w-64 bg-white shadow-xl rounded-b-lg border-t-4 border-[#E67E61] opacity-0 invisible group-hover/specialty:opacity-100 group-hover/specialty:visible transition-all duration-300 z-[100]">
+                            <div className="py-2 flex flex-col">
+                                {SPECIALTIES_MENU.map((spec, idx) => (
+                                    <Link
+                                        key={idx}
+                                        to="/specialities"
+                                        className="block px-6 py-2 text-[13px] font-bold text-gray-700 hover:text-green-700 hover:bg-green-50 transition-colors"
+                                    >
+                                        {spec.title}
+                                    </Link>
+                                ))}
                             </div>
                         </div>
                     </div>
+
+
                     <Link to="/centre-of-excellence" className="flex items-center gap-1 cursor-pointer hover:text-green-700 pb-1">
-                        <span>Centre of Excellence</span> <ChevronDown size={14} />
+                        <Award size={16} />
+                        <span>Centre of Excellence</span>
                     </Link>
                     <Link to="/blog" className="flex items-center gap-1 cursor-pointer hover:text-green-700 pb-1">
-                        <span>Media Centre</span> <ChevronDown size={14} />
+                        <Newspaper size={16} />
+                        <span>Media Centre</span>
                     </Link>
+
+
                     {/* Medical Services Dropdown */}
                     <div className="relative group/medical cursor-pointer pb-1">
                         <div className="flex items-center gap-1 group-hover/medical:text-green-700 transition-all">
+                            <BriefcaseMedical size={16} />
                             <span>Medical Services</span> <ChevronDown size={14} className="group-hover/medical:rotate-180 transition-transform" />
                         </div>
                         <div className="absolute top-full left-0 w-64 bg-white shadow-xl rounded-b-lg border-t-4 border-[#E67E61] opacity-0 invisible group-hover/medical:opacity-100 group-hover/medical:visible transition-all duration-300 z-50">
@@ -266,6 +214,7 @@ export default function Header() {
                     </div>
                     <div className="relative group cursor-pointer pb-1">
                         <div className="flex items-center gap-1 group-hover:text-green-700">
+                            <User size={16} />
                             <span>Patient Corner</span> <ChevronDown size={14} />
                         </div>
                         {/* Dropdown Menu */}
@@ -279,11 +228,10 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                    <Link to="/international" className="cursor-pointer hover:text-green-700 pb-1">
+                    {/* <Link to="/international" className="cursor-pointer hover:text-green-700 pb-1">
                         <span>International Section</span>
-                    </Link>
+                    </Link> */}
                 </nav>
-
                 {/* Mobile Menu Toggle */}
                 <button
                     className="xl:hidden p-2 text-gray-600"
@@ -324,19 +272,110 @@ export default function Header() {
 
             {/* Mobile Menu Overlay */}
             {isMenuOpen && (
-                <div className="xl:hidden fixed inset-0 top-[120px] bg-white z-50 p-6 overflow-y-auto border-t border-gray-100">
-                    <nav className="flex flex-col gap-6 text-lg font-semibold text-gray-800">
-                        <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
-                        <div className="flex justify-between items-center">
-                            <span>Hospitals</span> <ChevronDown size={20} />
-                        </div>
-                        <div className="flex justify-between items-center">
-                            <span>Specialties</span> <ChevronDown size={20} />
-                        </div>
-                        <Link to="/doctors" onClick={() => setIsMenuOpen(false)}>Find a Doctor</Link>
-                        <Link to="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
-                        <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact Us</Link>
-                    </nav>
+                <div className="xl:hidden fixed inset-0 z-[200] bg-white animate-in slide-in-from-right duration-300 flex flex-col">
+                    {/* Mobile Menu Header */}
+                    <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-white sticky top-0 z-10">
+                        <Link to="/" onClick={() => setIsMenuOpen(false)} className="flex items-center">
+                            <img
+                                src="/logo.png"
+                                alt="Vartika Aarna Hospital Logo"
+                                className="h-12 w-auto object-contain"
+                            />
+                        </Link>
+                        <button
+                            onClick={() => setIsMenuOpen(false)}
+                            className="p-2 text-gray-500 hover:text-red-500 bg-gray-50 rounded-full transition-colors"
+                        >
+                            <X size={20} />
+                        </button>
+                    </div>
+
+                    {/* Scrollable Content */}
+                    <div className="flex-1 overflow-y-auto p-4">
+                        <nav className="flex flex-col gap-1 text-[13px] font-bold text-gray-700">
+                            <Link to="/" onClick={() => setIsMenuOpen(false)} className="py-2 px-2 border-b border-gray-50 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors">Home</Link>
+
+                            {/* Departments Mobile Accordion */}
+                            <div className="border-b border-gray-50">
+                                <details className="group">
+                                    <summary className="flex justify-between items-center py-2 px-2 cursor-pointer list-none hover:bg-green-50 hover:text-green-700 rounded-md transition-colors">
+                                        <span>Departments</span>
+                                        <ChevronDown size={14} className="transform group-open:rotate-180 transition-transform" />
+                                    </summary>
+                                    <div className="pl-4 pb-2 flex flex-col gap-1 text-[12px] text-gray-600">
+                                        {DEPARTMENTS_MENU.map((dept, idx) => (
+                                            <Link
+                                                key={idx}
+                                                to={dept.path}
+                                                onClick={() => setIsMenuOpen(false)}
+                                                className="py-1.5 px-2 hover:text-green-700 hover:bg-green-50 rounded-md block"
+                                            >
+                                                {dept.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </details>
+                            </div>
+
+                            {/* Specialties Mobile Accordion */}
+                            <div className="border-b border-gray-50">
+                                <details className="group">
+                                    <summary className="flex justify-between items-center py-2 px-2 cursor-pointer list-none hover:bg-green-50 hover:text-green-700 rounded-md transition-colors">
+                                        <span>Specialties</span>
+                                        <ChevronDown size={14} className="transform group-open:rotate-180 transition-transform" />
+                                    </summary>
+                                    <div className="pl-4 pb-2 flex flex-col gap-1 text-[12px] text-gray-600">
+                                        {SPECIALTIES_MENU.map((spec, idx) => (
+                                            <Link
+                                                key={idx}
+                                                to="/specialities"
+                                                onClick={() => setIsMenuOpen(false)}
+                                                className="py-1.5 px-2 hover:text-green-700 hover:bg-green-50 rounded-md block"
+                                            >
+                                                {spec.title}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </details>
+                            </div>
+
+                            <Link to="/centre-of-excellence" onClick={() => setIsMenuOpen(false)} className="py-2 px-2 border-b border-gray-50 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors">Centre of Excellence</Link>
+                            <Link to="/blog" onClick={() => setIsMenuOpen(false)} className="py-2 px-2 border-b border-gray-50 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors">Media Centre</Link>
+
+                            {/* Medical Services Mobile Accordion */}
+                            <div className="border-b border-gray-50">
+                                <details className="group">
+                                    <summary className="flex justify-between items-center py-2 px-2 cursor-pointer list-none hover:bg-green-50 hover:text-green-700 rounded-md transition-colors">
+                                        <span>Medical Services</span>
+                                        <ChevronDown size={14} className="transform group-open:rotate-180 transition-transform" />
+                                    </summary>
+                                    <div className="pl-4 pb-2 flex flex-col gap-1 text-[12px] text-gray-600">
+                                        <Link to="/medical-procedures" onClick={() => setIsMenuOpen(false)} className="py-1.5 px-2 hover:bg-green-50 hover:text-green-700 rounded-md block">Medical Procedures</Link>
+                                        <Link to="/immigration-services" onClick={() => setIsMenuOpen(false)} className="py-1.5 px-2 hover:bg-green-50 hover:text-green-700 rounded-md block">Immigration Services</Link>
+                                    </div>
+                                </details>
+                            </div>
+
+                            {/* Patient Corner Mobile Accordion */}
+                            <div className="border-b border-gray-50">
+                                <details className="group">
+                                    <summary className="flex justify-between items-center py-2 px-2 cursor-pointer list-none hover:bg-green-50 hover:text-green-700 rounded-md transition-colors">
+                                        <span>Patient Corner</span>
+                                        <ChevronDown size={14} className="transform group-open:rotate-180 transition-transform" />
+                                    </summary>
+                                    <div className="pl-4 pb-2 flex flex-col gap-1 text-[12px] text-gray-600">
+                                        <Link to="/blog" onClick={() => setIsMenuOpen(false)} className="py-1.5 px-2 hover:bg-green-50 hover:text-green-700 rounded-md block">Blogs</Link>
+                                        <Link to="/resources" onClick={() => setIsMenuOpen(false)} className="py-1.5 px-2 hover:bg-green-50 hover:text-green-700 rounded-md block">Podcasts</Link>
+                                        <Link to="/testimonials" onClick={() => setIsMenuOpen(false)} className="py-1.5 px-2 hover:bg-green-50 hover:text-green-700 rounded-md block">Patient Stories</Link>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <Link to="/doctors" onClick={() => setIsMenuOpen(false)} className="py-2 px-2 border-b border-gray-50 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors">Find a Doctor</Link>
+                            <Link to="/about" onClick={() => setIsMenuOpen(false)} className="py-2 px-2 border-b border-gray-50 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors">About Us</Link>
+                            <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="py-2 px-2 border-b border-gray-50 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors">Contact Us</Link>
+                        </nav>
+                    </div>
                 </div>
             )}
         </header>
